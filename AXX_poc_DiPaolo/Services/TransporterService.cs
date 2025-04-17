@@ -1,10 +1,11 @@
 ﻿using AXX_poc_DiPaolo.Models;
 using AXX_poc_DiPaolo.Models.Enums;
 using AXX_poc_DiPaolo.Repositories.Interfaces;
+using AXX_poc_DiPaolo.Services.Interfaces;
 
 namespace AXX_poc_DiPaolo.Services
 {
-    public class TransporterService
+    public class TransporterService : ITransporterService
     {
         private readonly ITransporterRequestRepository _requestRepository;
 

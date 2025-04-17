@@ -1,9 +1,10 @@
 ﻿using AXX_poc_DiPaolo.Models;
 using AXX_poc_DiPaolo.Repositories.Interfaces;
+using AXX_poc_DiPaolo.Services.Interfaces;
 
 namespace AXX_poc_DiPaolo.Services
 {
-    public class TyreDealerService
+    public class TyreDealerService : ITyreDealerService
     {
         private readonly ITyreDealerRequestRepository _requestRepository;
 

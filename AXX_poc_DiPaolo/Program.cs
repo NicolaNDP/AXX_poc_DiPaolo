@@ -3,19 +3,20 @@ using AXX_poc_DiPaolo.Models;
 using AXX_poc_DiPaolo.Repositories;
 using AXX_poc_DiPaolo.Repositories.Interfaces;
 using AXX_poc_DiPaolo.Services;
+using AXX_poc_DiPaolo.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ITyreDealerRequestRepository, TyreDealerRequestRepository>();
-builder.Services.AddScoped<TyreDealerService>();
+builder.Services.AddScoped<ITyreDealerService, TyreDealerService>();
 
 builder.Services.AddScoped<ITransporterRequestRepository, TransporterRequestRepository>();
-builder.Services.AddScoped<TransporterService>();
+builder.Services.AddScoped<ITransporterService, TransporterService>();
 
 builder.Services.AddScoped<IBackOfficeRequestRepository, BackOfficeRequestRepository>();
-builder.Services.AddScoped<BackOfficeService>();
+builder.Services.AddScoped<IBackOfficeService, BackOfficeService>();
 
 builder.Services.AddControllersWithViews();
 

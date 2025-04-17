@@ -1,4 +1,5 @@
 ﻿using AXX_poc_DiPaolo.Services;
+using AXX_poc_DiPaolo.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace AXX_poc_DiPaolo.Controllers
     [Route("tyredealer")]
     public class TyreDealerController : AuthenticatedController
     {
-        private readonly TyreDealerService _service;
+        private readonly ITyreDealerService _service;
 
-        public TyreDealerController(TyreDealerService service)
+        public TyreDealerController(ITyreDealerService service)
         {
             _service = service;
         }

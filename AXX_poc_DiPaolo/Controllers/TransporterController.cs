@@ -1,4 +1,5 @@
 ﻿using AXX_poc_DiPaolo.Services;
+using AXX_poc_DiPaolo.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace AXX_poc_DiPaolo.Controllers
     [Route("transporter")]
     public class TransporterController : AuthenticatedController
     {
-        private readonly TransporterService _service;
+        private readonly ITransporterService _service;
 
-        public TransporterController(TransporterService service)
+        public TransporterController(ITransporterService service)
         {
             _service = service;
         }
