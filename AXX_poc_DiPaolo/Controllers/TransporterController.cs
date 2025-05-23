@@ -1,5 +1,5 @@
-﻿using AXX_poc_DiPaolo.Services;
-using AXX_poc_DiPaolo.Services.Interfaces;
+﻿using AXX_poc_DiPaolo.Models;
+using AXX_poc_DiPaolo.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +9,9 @@ namespace AXX_poc_DiPaolo.Controllers
     [Route("transporter")]
     public class TransporterController : AuthenticatedController
     {
-        private readonly ITransporterService _service;
+        private readonly TransporterService _service;
 
-        public TransporterController(ITransporterService service)
+        public TransporterController(TransporterService service)
         {
             _service = service;
         }
@@ -26,21 +26,21 @@ namespace AXX_poc_DiPaolo.Controllers
         public IActionResult GetAvailable()
         {
             var requests = _service.CollectAvailableRequests();
-            return View(requests);
+            return View(requests as List<Request>);
         }
 
         [HttpGet("inprogress")]
         public IActionResult GetInProgress()
         {
             var requests = _service.CollectActiveRequests(CurrentUsername);
-            return View(requests);
+            return View(requests as List<Request>);
         }
 
         [HttpGet("history")]
         public IActionResult GetHistory()
         {
             var requests = _service.CollectRequestHistory(CurrentUsername);
-            return View(requests);
+            return View(requests as List<Request>);
         }
 
         [HttpPost("assign")]

@@ -1,10 +1,9 @@
 ﻿using AXX_poc_DiPaolo.Models;
 using AXX_poc_DiPaolo.Repositories.Interfaces;
-using AXX_poc_DiPaolo.Services.Interfaces;
 
 namespace AXX_poc_DiPaolo.Services
 {
-    public class TyreDealerService : ITyreDealerService
+    public class TyreDealerService
     {
         private readonly ITyreDealerRequestRepository _requestRepository;
 
@@ -13,9 +12,9 @@ namespace AXX_poc_DiPaolo.Services
             _requestRepository = requestRepository;
         }
 
-        private int maxRequests = 1;
-        private int minQuantity = 1000;
-        private int maxQuantity = 9500;
+        private int _maxRequests = 1;
+        private int _minQuantity = 1000;
+        private int _maxQuantity = 9500;
 
         public bool PublishRequest(string username, int quantity)
         {
@@ -51,13 +50,13 @@ namespace AXX_poc_DiPaolo.Services
         private bool IsAbleToAdd(string username)
         {
             return _requestRepository.FindActiveRequests(username)
-                .Count() < maxRequests;
+                .Count() < _maxRequests;
         }
 
         private bool ValidateQUantity(int quantity)
         {
-            return quantity >= minQuantity &&
-                quantity <= maxQuantity;
+            return quantity >= _minQuantity &&
+                quantity <= _maxQuantity;
         }
     }
 }

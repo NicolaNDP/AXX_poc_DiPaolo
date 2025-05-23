@@ -1,5 +1,5 @@
-﻿using AXX_poc_DiPaolo.Services;
-using AXX_poc_DiPaolo.Services.Interfaces;
+﻿using AXX_poc_DiPaolo.Models;
+using AXX_poc_DiPaolo.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +9,9 @@ namespace AXX_poc_DiPaolo.Controllers
     [Route("tyredealer")]
     public class TyreDealerController : AuthenticatedController
     {
-        private readonly ITyreDealerService _service;
+        private readonly TyreDealerService _service;
 
-        public TyreDealerController(ITyreDealerService service)
+        public TyreDealerController(TyreDealerService service)
         {
             _service = service;
         }
@@ -26,14 +26,14 @@ namespace AXX_poc_DiPaolo.Controllers
         public IActionResult GetActive()
         {
             var request = _service.CollectActiveRequests(CurrentUsername);
-            return View(request);
+            return View(request as List<Request>);
         }
 
         [HttpGet("history")]
         public IActionResult GetHistory()
         {
             var requests = _service.CollectRequestHistory(CurrentUsername);
-            return View(requests);
+            return View(requests as List<Request>);
         }
 
         [HttpGet("getcreate")]

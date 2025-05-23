@@ -13,18 +13,6 @@ namespace AXX_poc_DiPaolo.Repositories
             _context = context;
         }
 
-        //public void AssignRequest(Guid id, string username, DateTime pickupDate)
-        //{
-        //    var request = _context.RequestsList
-        //        .FirstOrDefault(r => r.Id == id);
-
-        //    var transporterCompanyName = FindCompanyName(username);
-
-        //    request.Status = RequestStatus.InProgress;
-        //    request.TransporterCompany = transporterCompanyName;
-        //    request.PickupDate = pickupDate;
-        //}
-
         public IEnumerable<Request?> FindAvailableRequests()
         {
             return _context.RequestsList

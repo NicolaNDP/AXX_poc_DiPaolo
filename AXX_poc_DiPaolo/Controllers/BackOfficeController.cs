@@ -1,5 +1,4 @@
 ﻿using AXX_poc_DiPaolo.Services;
-using AXX_poc_DiPaolo.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,8 +8,8 @@ namespace AXX_poc_DiPaolo.Controllers
     [Route("backoffice")]
     public class BackOfficeController : Controller
     {
-        private readonly IBackOfficeService _service;
-        public BackOfficeController(IBackOfficeService service)
+        private readonly BackOfficeService _service;
+        public BackOfficeController(BackOfficeService service)
         {
             _service = service;
         }
@@ -50,9 +49,9 @@ namespace AXX_poc_DiPaolo.Controllers
         }
 
         [HttpPost("validate")]
-        public IActionResult UpdateValidate(Guid id, int quantity)
+        public IActionResult UpdateValidate(Guid id)
         {
-            _service.ValidateRequest(id, quantity);
+            _service.ValidateRequest(id);
             return RedirectToAction("completed");
         }
     }

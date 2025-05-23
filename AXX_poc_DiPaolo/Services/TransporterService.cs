@@ -1,11 +1,10 @@
 ﻿using AXX_poc_DiPaolo.Models;
 using AXX_poc_DiPaolo.Models.Enums;
 using AXX_poc_DiPaolo.Repositories.Interfaces;
-using AXX_poc_DiPaolo.Services.Interfaces;
 
 namespace AXX_poc_DiPaolo.Services
 {
-    public class TransporterService : ITransporterService
+    public class TransporterService
     {
         private readonly ITransporterRequestRepository _requestRepository;
 
@@ -14,7 +13,7 @@ namespace AXX_poc_DiPaolo.Services
             _requestRepository = requestRepository;
         }
 
-        private int maxAssignments = 3;
+        private int _maxAssignments = 3;
 
         public IEnumerable<Request?> CollectAvailableRequests()
         {
@@ -51,7 +50,7 @@ namespace AXX_poc_DiPaolo.Services
         private bool IsAbleToAdd(string username)
         {
             return _requestRepository.FindActiveRequests(username)
-                .Count() < maxAssignments;
+                .Count() < _maxAssignments;
         }
 
         private bool IsRequestValuable(Request request, DateTime pickupDate)
